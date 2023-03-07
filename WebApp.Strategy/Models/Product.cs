@@ -11,7 +11,7 @@ namespace WebApp.Strategy.Models
         [BsonId] // MongoDB için
         [BsonRepresentation(BsonType.ObjectId)]
         [Key] // EF Core için
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
 
         [BsonRepresentation(BsonType.Decimal128)]
