@@ -33,6 +33,7 @@ namespace WebApp.Strategy.Repositories
 
         public async Task<Product> Save(Product product)
         {
+            product.Id = Guid.NewGuid().ToString();
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
             return product;
