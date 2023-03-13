@@ -17,9 +17,9 @@ namespace WebApp.Strategy.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductRepository _productRepository;
-        private readonly UserManager<Product> _userManager;
+        private readonly UserManager<User> _userManager;
 
-        public ProductsController(IProductRepository productRepository, UserManager<Product> userManager)
+        public ProductsController(IProductRepository productRepository, UserManager<User> userManager)
         {
             _productRepository = productRepository;
             _userManager = userManager;
@@ -62,12 +62,12 @@ namespace WebApp.Strategy.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Price,Stock,UserId,CreatedTime")] Product product)
+        public async Task<IActionResult> Create([Bind("Name,Price,Stock")] Product product)
         {
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByNameAsync(User.Identity.Name);
-                product.UserId = user.UserId;
+                product.UserId = user.Id;
                 product.CreatedTime = DateTime.Now;
                 await _productRepository.Save(product);
                 return RedirectToAction(nameof(Index));

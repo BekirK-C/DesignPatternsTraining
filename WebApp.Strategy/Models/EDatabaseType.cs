@@ -2,7 +2,7 @@
 {
     public enum EDatabaseType
     {
-        SqlServer = 0,
-        MongoDb = 1
+        SqlServer = 1,
+        MongoDb = 2
     }
 }
