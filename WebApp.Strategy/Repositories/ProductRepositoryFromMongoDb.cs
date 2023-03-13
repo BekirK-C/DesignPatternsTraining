@@ -10,10 +10,10 @@ namespace WebApp.Strategy.Repositories
 
         public ProductRepositoryFromMongoDb(IConfiguration configuration)
         {
-            var connectionString = configuration.GetConnectionString("MongoDB");
+            var connectionString = configuration.GetConnectionString("MongoDb");
             var client = new MongoClient(connectionString);
             var database = client.GetDatabase("ProductDb");
-            var _productCollection = database.GetCollection<Product>("Products");
+            _productCollection = database.GetCollection<Product>("Products");
         }
 
         public async Task Delete(Product product)
